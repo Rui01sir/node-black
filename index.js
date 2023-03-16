@@ -1,3 +1,48 @@
+// 引入套件
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const days = require("dayjs");
+const cors = require("cors");
+// const mysql = require("mysql")
+// 引入db連線模組
+const db = require("./modules/db_connect");
+
+// 使用express
+const app = express();
+
+// top-level middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
+app.post('/register',(req,res)=>{
+    db.query("INSERT INTO users(email,password)VALUES(?,?)",[email,password],(err,result)=>{
+        console.log(err);
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 判斷以哪個env檔的設定啟動
 if (process.argv[2] && process.argv[2] === "production") {
     require("dotenv").config({
@@ -9,21 +54,9 @@ if (process.argv[2] && process.argv[2] === "production") {
     });
 }
 
-// 引入套件
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const days = require("dayjs");
-const cors = require("cors");
 
-// 引入db連線模組
-const db = require("./modules/db_connect");
 
-// 使用express
-const app = express();
 
-// top-level middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 const corsOption = {
     credentials: true,
@@ -60,7 +93,7 @@ app.use((req, res, next) => {
 app.use("/member", require("./routes/member"));
 
 app.get("/", (req, res) => {
-    res.send("雷猴");
+    res.send("安安");
 
 });
 
